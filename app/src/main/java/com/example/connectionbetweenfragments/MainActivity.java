@@ -25,12 +25,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onInputBottomSent(String input) {
+    public void onInputFahrenheitSent(String input) {
         fragmentCelsius.updateCelsius(input);
     }
 
     @Override
-    public void onInputTopSent(String input) {
+    public void onInputCelsiusSent(String input) {
         fragmentFahrenheit.updateFahrenheit(input);
     }
 }

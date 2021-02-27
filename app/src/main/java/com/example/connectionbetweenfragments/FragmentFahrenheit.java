@@ -15,7 +15,7 @@ public class FragmentFahrenheit extends Fragment {
     private FragmentFahrenheitListener listener;
 
     public interface FragmentFahrenheitListener {
-        void onInputBottomSent(String input);
+        void onInputFahrenheitSent(String input);
     }
 
     public FragmentFahrenheit() {
@@ -33,7 +33,7 @@ public class FragmentFahrenheit extends Fragment {
 
             try {
                 String input = etFahrenheit.getText().toString();
-                listener.onInputBottomSent(input);
+                listener.onInputFahrenheitSent(input);
             } catch(NumberFormatException e){
                 return;
             }

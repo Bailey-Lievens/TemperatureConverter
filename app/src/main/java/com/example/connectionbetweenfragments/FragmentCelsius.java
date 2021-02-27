@@ -16,7 +16,7 @@ public class FragmentCelsius extends Fragment {
     private FragmentCelsiusListener listener;
 
     public interface FragmentCelsiusListener {
-        void onInputTopSent(String input);
+        void onInputCelsiusSent(String input);
     }
 
     public FragmentCelsius() {
@@ -34,7 +34,7 @@ public class FragmentCelsius extends Fragment {
 
             try {
                 String input = etCelsius.getText().toString();
-                listener.onInputTopSent(input);
+                listener.onInputCelsiusSent(input);
             }catch (NumberFormatException e){
                 return;
             }
