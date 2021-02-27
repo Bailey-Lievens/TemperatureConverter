@@ -3,23 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".FragmentBottom"
+    tools:context=".FragmentTop"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Celsius"
+        android:layout_gravity="left"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_fahrenheit"/>
+        android:id="@+id/et_celcius"
+        android:inputType="numberDecimal"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Convert to celcius"
-        android:id="@+id/btn_ToCelcius"
+        android:text="Convert"
+        android:id="@+id/btn_ToFahrenheit"
         android:layout_marginTop="20dp"/>
 
 

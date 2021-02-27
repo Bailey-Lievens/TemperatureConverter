@@ -26,7 +26,7 @@ public class FragmentBottom extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_bottom, container, false);
+        View v = inflater.inflate(R.layout.fragment_fahrenheit, container, false);
 
         etFahrenheit = v.findViewById(R.id.et_fahrenheit);
         v.findViewById(R.id.btn_ToCelcius).setOnClickListener(bv -> {
@@ -41,14 +41,19 @@ public class FragmentBottom extends Fragment {
 
     //ontvangt data van buitenaf
     public void updateFahrenheit(String input){
-        etFahrenheit.setText(input);
+
+        Double convertedInput = Double.parseDouble(input);
+
+        convertedInput = convertedInput * 1.8 +32;
+
+        etFahrenheit.setText(convertedInput.toString());
     }
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
 
-        if (context instanceof FragmentBottomListener){ //instanceof kan je checken of het type gelijk is aan
+        if (context instanceof FragmentBottomListener){
             listener = (FragmentBottomListener)context;
         } else {
             throw new RuntimeException(

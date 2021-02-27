@@ -1,7 +1,6 @@
 package com.example.connectionbetweenfragments;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onInputBottomSent(String input) {
-        fragmentTop.updateCelcius(input);
+        fragmentTop.updateCelsius(input);
     }
 
     @Override

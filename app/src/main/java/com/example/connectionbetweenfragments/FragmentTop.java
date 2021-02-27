@@ -12,7 +12,7 @@ import android.widget.EditText;
 
 public class FragmentTop extends Fragment {
 
-    private EditText etCelcius;
+    private EditText etCelsius;
     private FragmentTopListener listener;
 
     public interface FragmentTopListener {
@@ -27,11 +27,11 @@ public class FragmentTop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_top, container, false);
+        View v = inflater.inflate(R.layout.fragment_celsius, container, false);
 
-        etCelcius = v.findViewById(R.id.et_celcius);
+        etCelsius = v.findViewById(R.id.et_celcius);
         v.findViewById(R.id.btn_ToFahrenheit).setOnClickListener(bv -> {
-            String input = etCelcius.getText().toString();
+            String input = etCelsius.getText().toString();
 
             //Stuur naar andere fragment
             listener.onInputTopSent(input);
@@ -41,8 +41,13 @@ public class FragmentTop extends Fragment {
     }
 
     //ontvangt data van buitenaf
-    public void updateCelcius(String input){
-        etCelcius.setText(input);
+    public void updateCelsius(String input){
+
+        Double convertedInput = Double.parseDouble(input);
+
+        convertedInput = (convertedInput -32)/2;
+
+        etCelsius.setText(convertedInput.toString());
     }
 
     @Override
