@@ -30,7 +30,7 @@ public class FragmentCelsius extends Fragment {
         View v = inflater.inflate(R.layout.fragment_celsius, container, false);
 
         etCelsius = v.findViewById(R.id.et_celsius);
-        v.findViewById(R.id.btn_ToFahrenheit).setOnClickListener(bv -> {
+        v.findViewById(R.id.btn_Celsius).setOnClickListener(bv -> {
 
             try {
                 String input = etCelsius.getText().toString();
@@ -46,13 +46,22 @@ public class FragmentCelsius extends Fragment {
     }
 
     //ontvangt data van buitenaf
-    public void updateCelsius(String input){
+    public void updateCelsius(String input, char originTemperature){
 
         Double convertedInput = 0.0;
-
         convertedInput = Double.parseDouble(input);
 
-        convertedInput = (convertedInput -32)/2;
+        switch(originTemperature){
+            case 'f': //If the origin is fahrenheit
+                convertedInput = (convertedInput -32)/1.8;
+                break;
+
+            case 'k': //if the origin is kelvin
+                convertedInput = convertedInput - 273.15;
+                break;
+        }
+
+        convertedInput = Math.round(convertedInput*100.0)/100.0;
 
         etCelsius.setText(convertedInput.toString());
     }

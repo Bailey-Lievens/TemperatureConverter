@@ -10,11 +10,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layoutTop"/>
+        android:id="@+id/layoutCelsius"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layoutBottom"/>
+        android:id="@+id/layoutFahrenheit"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutKelvin"/>
 </LinearLayout>

@@ -9,16 +9,16 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
-public class FragmentFahrenheit extends Fragment {
+public class FragmentKelvin extends Fragment {
 
-    private EditText etFahrenheit;
-    private FragmentFahrenheitListener listener;
+    private EditText etKelvin;
+    private FragmentKelvinListener listener;
 
-    public interface FragmentFahrenheitListener {
-        void onInputFahrenheitSent(String input);
+    public interface FragmentKelvinListener {
+        void onInputKelvinSent(String input);
     }
 
-    public FragmentFahrenheit() {
+    public FragmentKelvin() {
         // Required empty public constructor
     }
 
@@ -26,14 +26,14 @@ public class FragmentFahrenheit extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_fahrenheit, container, false);
+        View v = inflater.inflate(R.layout.fragment_kelvin, container, false);
 
-        etFahrenheit = v.findViewById(R.id.et_fahrenheit);
-        v.findViewById(R.id.btn_Celsius).setOnClickListener(bv -> {
+        etKelvin = v.findViewById(R.id.et_kelvin);
+        v.findViewById(R.id.btn_Kelvin).setOnClickListener(bv -> {
 
             try {
-                String input = etFahrenheit.getText().toString();
-                listener.onInputFahrenheitSent(input);
+                String input = etKelvin.getText().toString();
+                listener.onInputKelvinSent(input);
             } catch(NumberFormatException e){
                 return;
             }
@@ -43,32 +43,32 @@ public class FragmentFahrenheit extends Fragment {
     }
 
     //ontvangt data van buitenaf
-    public void updateFahrenheit(String input, char originTemperature){
+    public void updateKelvin(String input, char originTemperature){
 
         Double convertedInput = 0.0;
         convertedInput = Double.parseDouble(input);
 
         switch(originTemperature){
             case 'c': //If the origin is celsius
-                convertedInput = convertedInput*1.8+32;
+                convertedInput = convertedInput+273.15;
                 break;
 
-            case 'k': //if the origin is kelvin
-                convertedInput = (convertedInput-273.15)*1.8+32;
+            case 'f': //if the origin is fahrenheit
+                convertedInput = ((convertedInput-32)/1.8)+273.15;
                 break;
         }
 
         convertedInput = Math.round(convertedInput*100.0)/100.0;
 
-        etFahrenheit.setText(convertedInput.toString());
+        etKelvin.setText(convertedInput.toString());
     }
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
 
-        if (context instanceof FragmentFahrenheitListener){
-            listener = (FragmentFahrenheitListener)context;
+        if (context instanceof FragmentKelvinListener){
+            listener = (FragmentKelvinListener)context;
         } else {
             throw new RuntimeException(
                     String.format("%s must implement FragmentBottomListener", context.toString())
