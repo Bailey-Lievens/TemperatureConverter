@@ -35,6 +35,7 @@ public class FragmentKelvin extends Fragment {
                 String input = etKelvin.getText().toString();
                 listener.onInputKelvinSent(input);
             } catch(NumberFormatException e){
+                etKelvin.setError("Please enter a number");
                 return;
             }
         });
@@ -60,6 +61,7 @@ public class FragmentKelvin extends Fragment {
 
         convertedInput = Math.round(convertedInput*100.0)/100.0;
 
+        etKelvin.setError(null);
         etKelvin.setText(convertedInput.toString());
     }
 

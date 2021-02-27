@@ -36,6 +36,7 @@ public class FragmentCelsius extends Fragment {
                 String input = etCelsius.getText().toString();
                 listener.onInputCelsiusSent(input);
             }catch (NumberFormatException e){
+                etCelsius.setError("Please enter a number");
                 return;
             }
 
@@ -63,6 +64,7 @@ public class FragmentCelsius extends Fragment {
 
         convertedInput = Math.round(convertedInput*100.0)/100.0;
 
+        etCelsius.setError(null);
         etCelsius.setText(convertedInput.toString());
     }
 

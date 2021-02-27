@@ -35,6 +35,7 @@ public class FragmentFahrenheit extends Fragment {
                 String input = etFahrenheit.getText().toString();
                 listener.onInputFahrenheitSent(input);
             } catch(NumberFormatException e){
+                etFahrenheit.setError("Please enter a number");
                 return;
             }
         });
@@ -60,6 +61,8 @@ public class FragmentFahrenheit extends Fragment {
 
         convertedInput = Math.round(convertedInput*100.0)/100.0;
 
+
+        etFahrenheit.setError(null);
         etFahrenheit.setText(convertedInput.toString());
     }
 
