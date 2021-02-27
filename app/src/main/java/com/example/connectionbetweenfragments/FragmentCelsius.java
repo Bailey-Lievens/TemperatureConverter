@@ -10,16 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-public class FragmentTop extends Fragment {
+public class FragmentCelsius extends Fragment {
 
     private EditText etCelsius;
-    private FragmentTopListener listener;
+    private FragmentCelsiusListener listener;
 
-    public interface FragmentTopListener {
+    public interface FragmentCelsiusListener {
         void onInputTopSent(String input);
     }
 
-    public FragmentTop() {
+    public FragmentCelsius() {
         // Required empty public constructor
     }
 
@@ -29,12 +29,17 @@ public class FragmentTop extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_celsius, container, false);
 
-        etCelsius = v.findViewById(R.id.et_celcius);
+        etCelsius = v.findViewById(R.id.et_celsius);
         v.findViewById(R.id.btn_ToFahrenheit).setOnClickListener(bv -> {
-            String input = etCelsius.getText().toString();
 
-            //Stuur naar andere fragment
-            listener.onInputTopSent(input);
+            try {
+                String input = etCelsius.getText().toString();
+                listener.onInputTopSent(input);
+            }catch (NumberFormatException e){
+                return;
+            }
+
+
         });
 
         return v;
@@ -43,7 +48,9 @@ public class FragmentTop extends Fragment {
     //ontvangt data van buitenaf
     public void updateCelsius(String input){
 
-        Double convertedInput = Double.parseDouble(input);
+        Double convertedInput = 0.0;
+
+        convertedInput = Double.parseDouble(input);
 
         convertedInput = (convertedInput -32)/2;
 
@@ -54,8 +61,8 @@ public class FragmentTop extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
 
-        if (context instanceof FragmentTopListener){ //instanceof kan je checken of het type gelijk is aan
-            listener = (FragmentTopListener)context;
+        if (context instanceof FragmentCelsiusListener){ //instanceof kan je checken of het type gelijk is aan
+            listener = (FragmentCelsiusListener)context;
         } else {
             throw new RuntimeException(
                     String.format("%s must implement FragmentTopListener", context.toString())

@@ -5,32 +5,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity
-    implements FragmentTop.FragmentTopListener, FragmentBottom.FragmentBottomListener {
+    implements FragmentCelsius.FragmentCelsiusListener, FragmentFahrenheit.FragmentFahrenheitListener {
 
-    private FragmentTop fragmentTop;
-    private FragmentBottom fragmentBottom;
+    private FragmentCelsius fragmentCelsius;
+    private FragmentFahrenheit fragmentFahrenheit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragmentTop = new FragmentTop();
-        fragmentBottom = new FragmentBottom();
+        fragmentCelsius = new FragmentCelsius();
+        fragmentFahrenheit = new FragmentFahrenheit();
 
         getSupportFragmentManager().beginTransaction()
-            .replace(R.id.layoutTop, fragmentTop)
-            .replace(R.id.layoutBottom, fragmentBottom)
+            .replace(R.id.layoutTop, fragmentCelsius)
+            .replace(R.id.layoutBottom, fragmentFahrenheit)
             .commit();
     }
 
     @Override
     public void onInputBottomSent(String input) {
-        fragmentTop.updateCelsius(input);
+        fragmentCelsius.updateCelsius(input);
     }
 
     @Override
     public void onInputTopSent(String input) {
-        fragmentBottom.updateFahrenheit(input);
+        fragmentFahrenheit.updateFahrenheit(input);
     }
 }

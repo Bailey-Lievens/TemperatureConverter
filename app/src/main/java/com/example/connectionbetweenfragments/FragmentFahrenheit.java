@@ -9,16 +9,16 @@ import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
-public class FragmentBottom extends Fragment {
+public class FragmentFahrenheit extends Fragment {
 
     private EditText etFahrenheit;
-    private FragmentBottomListener listener;
+    private FragmentFahrenheitListener listener;
 
-    public interface FragmentBottomListener {
+    public interface FragmentFahrenheitListener {
         void onInputBottomSent(String input);
     }
 
-    public FragmentBottom() {
+    public FragmentFahrenheit() {
         // Required empty public constructor
     }
 
@@ -29,11 +29,14 @@ public class FragmentBottom extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fahrenheit, container, false);
 
         etFahrenheit = v.findViewById(R.id.et_fahrenheit);
-        v.findViewById(R.id.btn_ToCelcius).setOnClickListener(bv -> {
-            String input = etFahrenheit.getText().toString();
+        v.findViewById(R.id.btn_ToCelsius).setOnClickListener(bv -> {
 
-            //Stuur naar andere fragment
-            listener.onInputBottomSent(input);
+            try {
+                String input = etFahrenheit.getText().toString();
+                listener.onInputBottomSent(input);
+            } catch(NumberFormatException e){
+                return;
+            }
         });
 
         return v;
@@ -42,7 +45,9 @@ public class FragmentBottom extends Fragment {
     //ontvangt data van buitenaf
     public void updateFahrenheit(String input){
 
-        Double convertedInput = Double.parseDouble(input);
+        Double convertedInput = 0.0;
+
+        convertedInput = Double.parseDouble(input);
 
         convertedInput = convertedInput * 1.8 +32;
 
@@ -53,8 +58,8 @@ public class FragmentBottom extends Fragment {
     public void onAttach(Context context){
         super.onAttach(context);
 
-        if (context instanceof FragmentBottomListener){
-            listener = (FragmentBottomListener)context;
+        if (context instanceof FragmentFahrenheitListener){
+            listener = (FragmentFahrenheitListener)context;
         } else {
             throw new RuntimeException(
                     String.format("%s must implement FragmentBottomListener", context.toString())
